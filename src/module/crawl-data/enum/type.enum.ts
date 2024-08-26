@@ -1,0 +1,22 @@
+export enum CrawlDataType {
+  BANNHA88 = 1,
+  BATDONGSAN = 2,
+  GIAODICHNHADAT = 3,
+  NGUONCHINHCHU = 4,
+  NHADAT24H = 5,
+  MOGI = 6,
+  BDS = 7,
+  BATDONGSAN368 = 8,
+  SEONHADAT = 9,
+  NHADATVUI = 10,
+  MUABANNHADAT = 11,
+  ALONHADAT = 12,
+  DATVIET24H = 13,
+  BATDONGSANHOME = 14,
+  PHOMUABAN = 15,
+}
+
+export enum CrawlDataStatus {
+  CREATED = 1,
+  UN_CREATE = 0,
+}

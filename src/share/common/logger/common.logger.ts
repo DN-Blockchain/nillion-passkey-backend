@@ -14,10 +14,7 @@ export class CommonLogger extends Logger {
 			datePattern: 'YYYY-MM-DD',
 			maxSize: '10m',
 			maxFiles: '7d',
-			format: winston.format.combine(
-				winston.format.timestamp(),
-				winston.format.json(),
-			),
+			format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
 		});
 		this.winstonLogger = winston.createLogger({
 			transports: winstonTransports,

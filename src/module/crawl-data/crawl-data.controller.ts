@@ -8,20 +8,20 @@ import { UpdateCrawlDataDto } from './dto/update-crawl-data.dto';
 @ApiTags('CrawData')
 @Controller('crawl-data')
 export class CrawlDataController {
-    constructor(private crawlDataService: CrawlDataService) { }
+	constructor(private crawlDataService: CrawlDataService) {}
 
-    @Post('/')
-    async createCrawlData(@Body() createCrawlDataDto: CreateCrawlDataDto): Promise<any> {
-        return this.crawlDataService.createCrawlData(createCrawlDataDto);
-    }
+	@Post('/')
+	async createCrawlData(@Body() createCrawlDataDto: CreateCrawlDataDto): Promise<any> {
+		return this.crawlDataService.createCrawlData(createCrawlDataDto);
+	}
 
-    @Post('/latest')
-    async getCrawlData(@Body() getListCrawlDataDto: GetListCrawlDataDto) {
-        return this.crawlDataService.getListCrawlData(getListCrawlDataDto);
-    }
+	@Post('/latest')
+	async getCrawlData(@Body() getListCrawlDataDto: GetListCrawlDataDto) {
+		return this.crawlDataService.getListCrawlData(getListCrawlDataDto);
+	}
 
-    @Put('/update')
-    async updateCrawlData(@Body() updateCrawlDataDto: UpdateCrawlDataDto) {
-        return this.crawlDataService.updateCrawlData(updateCrawlDataDto)
-    }
+	@Put('/update')
+	async updateCrawlData(@Body() updateCrawlDataDto: UpdateCrawlDataDto) {
+		return this.crawlDataService.updateCrawlData(updateCrawlDataDto);
+	}
 }

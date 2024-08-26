@@ -10,7 +10,7 @@ import { CrawlDataModule } from './module/crawl-data/crawl-data.module';
 		ConfigModule.forRoot({ isGlobal: true }),
 		TypeOrmModule.forRootAsync(typeOrmAsyncConfigPostgres),
 		EventEmitterModule.forRoot(),
-		CrawlDataModule
+		CrawlDataModule,
 	],
 })
 export class AppModule {}

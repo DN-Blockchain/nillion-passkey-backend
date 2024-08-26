@@ -2,18 +2,18 @@
 import { Response, Request, NextFunction } from 'express';
 
 export interface ExtendRequest extends Request {
-	policy: any,
-	user: any,
+	policy: any;
+	user: any;
 	query: {
-		offset: string,
-		limit: string,
-		page: string,
-		[key: string]: string
-	}
+		offset: string;
+		limit: string;
+		page: string;
+		[key: string]: string;
+	};
 }
 
 export interface ExtendResponse extends Response {
-	success(data: any): ExtendResponse
+	success(data: any): ExtendResponse;
 }
 
 export const customResponse = async (req: ExtendRequest, res: Response, next: NextFunction) => {

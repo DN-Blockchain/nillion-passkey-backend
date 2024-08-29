@@ -11,7 +11,7 @@ export class User {
 	@Column({ type: 'varchar' })
 	password?: string;
 
-	@Column({ type: 'varchar' })
+	@Column({ type: 'varchar', default: null })
 	current_token?: string;
 
 	@CreateDateColumn({ type: 'timestamp' })

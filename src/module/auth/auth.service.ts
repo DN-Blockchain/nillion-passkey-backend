@@ -42,7 +42,7 @@ export class AuthService {
 
 	public async login(logInDto: LogInDto): Promise<{ access_token: string; expired_at: number }> {
 		try {
-			const user = await this.userModel.findOne({ where: { email: logInDto } });
+			const user = await this.userModel.findOne({ where: { email: logInDto.email } });
 			if (!user) throw new HttpException(userError.USER_NOT_FOUND, HttpStatus.NOT_FOUND);
 
 			const checkPassword = await bcrypt.compare(logInDto.password, user.password);

@@ -1,18 +1,18 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity({ name: 'crawl_project' })
-export class CrawlProject {
+@Entity({ name: 'users' })
+export class User {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int' })
-	type: number;
+	@Column({ type: 'varchar', unique: true })
+	email?: string;
 
-	@Column({ type: 'varchar', nullable: true })
-	url: string;
+	@Column({ type: 'varchar' })
+	password?: string;
 
-	@Column({ type: 'bigint' })
-	member_id: number;
+	@Column({ type: 'varchar' })
+	current_token?: string;
 
 	@CreateDateColumn({ type: 'timestamp' })
 	created_at: Date;

@@ -5,6 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 import { typeOrmAsyncConfigPostgres } from './config/typeorm.config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { PasskeyModule } from './module/passkey/passkey.module';
+import { UserModule } from './module/user/user.module';
+import { AuthModule } from './module/auth/auth.module';
 
 @Module({
 	imports: [
@@ -16,7 +18,9 @@ import { PasskeyModule } from './module/passkey/passkey.module';
             isGlobal: true,
             ttl: 1000 * 60 * 5, // 5 minutes
         }),
-		PasskeyModule
+		PasskeyModule,
+		UserModule,
+		AuthModule,
 	],
 })
 export class AppModule {}

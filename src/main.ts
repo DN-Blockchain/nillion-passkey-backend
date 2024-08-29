@@ -23,16 +23,16 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule, { cors: false });
 
 	app.enableCors({
-		origin: [`${configService.get<number>('ORIGIN_URL')}`],
+		origin: [`${configService.get<number>('ORIGIN_URL')}`, `${configService.get<number>('ORIGIN_URL_LOCAL')}`],
 		credentials: true,
 	});
 
 	const config = new DocumentBuilder()
 		.setTitle('Backend API Swagger')
-		.setDescription('This is a detail specification of API Swagger')
+		.setDescription('T his is a detail specification of API Swagger')
 		.setVersion('1.0')
 		.addBearerAuth({ in: 'header', type: 'http' })
-		.addServer('http://localhost:8000/api/v1')
+		.addServer('http://localhost:3000/api/v1')
 		.build();
 
 	const document = SwaggerModule.createDocument(app, config);

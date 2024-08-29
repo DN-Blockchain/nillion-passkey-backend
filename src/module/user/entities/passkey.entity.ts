@@ -1,21 +1,30 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity({ name: 'crawl_data' })
-export class CrawlData {
+@Entity({ name: 'passkeys' })
+export class User {
 	@PrimaryGeneratedColumn()
 	id: number;
 
+	@Column({ type: 'bytea' })
+	cred_public_key?: Uint8Array;
+
 	@Column({ type: 'bigint' })
-	member_id: number;
-
-	@Column({ type: 'int' })
-	type: number;
-
-	@Column({ type: 'int' })
-	status: number;
+	user_id?: number;
 
 	@Column({ type: 'varchar' })
-	phone_number: string;
+	webauthn_user_id?: string;
+
+	@Column({ type: 'int' })
+	counter?: number;
+
+	@Column({ type: 'boolean' })
+	backup_eligible?: boolean;
+
+	@Column({ type: 'boolean' })
+	backup_status?: boolean;
+
+	@Column({ type: 'varchar' })
+	transports?: string;
 
 	@CreateDateColumn({ type: 'timestamp' })
 	created_at: Date;

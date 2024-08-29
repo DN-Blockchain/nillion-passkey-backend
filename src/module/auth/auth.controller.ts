@@ -1,20 +1,20 @@
+import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
-import { authConstant } from './auth.constant';
-import { SignupDto } from './dto/signup.dto';
+import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { LogInDto } from './dto/login.dto';
-import { Request, Response } from 'express';
 import { JwtAuthGuard } from '../../share/guard/jwt.guard';
-import { GetUser } from '../../share/decorator';
+import { auth_constant } from './auth.constant';
+import { SignUpDto } from './dto/signup.dto';
+import { GetUser } from 'src/share/decorator';
 
 @ApiTags('Auth')
-@Controller(authConstant.BASE_PATH)
+@Controller(auth_constant.BASE_PATH)
 export class AuthController {
 	constructor(private authService: AuthService) {}
 
 	@Post('signup')
-	async signup(@Body() signUpDto: SignupDto) {
+	async signup(@Body() signUpDto: SignUpDto) {
 		return await this.authService.signUp(signUpDto);
 	}
 
@@ -25,6 +25,7 @@ export class AuthController {
 		return { access_token, expired_at };
 	}
 
+	// Logout.
 	@Post('logout')
 	@ApiBearerAuth()
 	@UseGuards(JwtAuthGuard)

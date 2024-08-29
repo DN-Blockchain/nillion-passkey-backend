@@ -11,7 +11,7 @@ import { jwtConfig } from '../../../config/constant.config';
 export class JwtStrategy extends PassportStrategy(Strategy) {
 	constructor(
 		@InjectRepository(User)
-		private readonly userRepository: Repository<User>,
+		private readonly userModel: Repository<User>,
 	) {
 		super({
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -28,7 +28,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 	public async validate(payload: any, done: VerifiedCallback) {
 		try {
 			const { user_id } = payload;
-			const user = await this.userRepository.findOne({ where: { id: user_id, current_token: Not(IsNull()) } });
+			const user = await this.userModel.findOne({ where: { id: user_id, current_token: Not(IsNull()) } });
 			if (!user) throw new UnauthorizedException();
 
 			return done(null, user);

@@ -14,7 +14,7 @@ import { loggerMiddleware } from './share/middleware/logger.middleware';
 
 // AbortController polyfill for Node 14 using in AWS
 import { AbortController } from 'node-abort-controller';
-global.AbortController = AbortController;
+(global as any).AbortController = AbortController;
 
 dotenv.config();
 const configService = new ConfigService();
@@ -29,7 +29,7 @@ async function bootstrap() {
 
 	const config = new DocumentBuilder()
 		.setTitle('Backend API Swagger')
-		.setDescription('T his is a detail specification of API Swagger')
+		.setDescription('This is a detail specification of API Swagger')
 		.setVersion('1.0')
 		.addBearerAuth({ in: 'header', type: 'http' })
 		.addServer('http://localhost:3000/api/v1')

@@ -39,7 +39,7 @@ lerna-debug.log*
 .eslintrc.js
 
 # ENV
-# .env
+.env
 
 # Local
 src/local

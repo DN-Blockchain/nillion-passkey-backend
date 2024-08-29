@@ -1,4 +1,4 @@
-export const authConstant = {
+export const auth_constant = {
 	BASE_PATH: 'auth',
 	ERROR_REDIRECT: 'ERROR_REDIRECT',
 	USER_IS_NOT_A_ORGANIZER: 'USER_IS_NOT_A_ORGANIZER',

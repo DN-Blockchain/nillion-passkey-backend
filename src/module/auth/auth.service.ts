@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CommonLogger } from '../../share/common/logger/common.logger';
-import { SignupDto } from './dto/signup.dto';
+import { SignUpDto } from './dto/signup.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../user/entities/user.entity';
 import { QueryRunner, Repository } from 'typeorm';
@@ -16,10 +16,9 @@ export class AuthService {
 		private jwtService: JwtService,
 		@InjectRepository(User)
 		private readonly userModel: Repository<User>,
-	) {
-	}
+	) {}
 
-	public async signUp(signUpDto: SignupDto): Promise<User> {
+	public async signUp(signUpDto: SignUpDto): Promise<User> {
 		try {
 			const isUser = await this.userModel.findOne({ where: { email: signUpDto.email } });
 			if (isUser) throw new HttpException(userError.EMAIL_IS_EXISTS, HttpStatus.BAD_REQUEST);
@@ -35,7 +34,7 @@ export class AuthService {
 				return { ...user, password: undefined };
 			});
 		} catch (error) {
-			CommonLogger.log(`${ new Date().toDateString() }_ERRORS_POST_AUTH_LOGIN_WITH_EMAIL_SERVICE_`, error);
+			CommonLogger.log(`${new Date().toDateString()}_ERRORS_POST_AUTH_LOGIN_WITH_EMAIL_SERVICE_`, error);
 			throw error;
 		}
 	}
@@ -60,7 +59,7 @@ export class AuthService {
 				expired_at: 86400,
 			};
 		} catch (error) {
-			CommonLogger.log(`${ new Date().toDateString() }_ERRORS_POST_AUTH_LOGIN_WITH_EMAIL_SERVICE_`, error);
+			CommonLogger.log(`${new Date().toDateString()}_ERRORS_POST_AUTH_LOGIN_WITH_EMAIL_SERVICE_`, error);
 			throw error;
 		}
 	}

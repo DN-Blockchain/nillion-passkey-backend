@@ -10,14 +10,13 @@ import { AuthModule } from './module/auth/auth.module';
 
 @Module({
 	imports: [
-
 		ConfigModule.forRoot({ isGlobal: true }),
 		TypeOrmModule.forRootAsync(typeOrmAsyncConfigPostgres),
 		EventEmitterModule.forRoot(),
 		CacheModule.register({
-            isGlobal: true,
-            ttl: 1000 * 60 * 5, // 5 minutes
-        }),
+			isGlobal: true,
+			ttl: 1000 * 60 * 5, // 5 minutes
+		}),
 		PasskeyModule,
 		UserModule,
 		AuthModule,

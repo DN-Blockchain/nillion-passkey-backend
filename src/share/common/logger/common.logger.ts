@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import * as winston from 'winston';
-import 'winston-daily-rotate-file';
+import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { ILog } from './log.interface';
 
 export class CommonLogger extends Logger {
@@ -8,7 +8,7 @@ export class CommonLogger extends Logger {
 
 	constructor(context?: string) {
 		super(context);
-		const winstonTransports = new winston.transports.DailyRotateFile({
+		const winstonTransports = new DailyRotateFile({
 			filename: '%DATE%.log',
 			dirname: './logs/',
 			datePattern: 'YYYY-MM-DD',
@@ -30,3 +30,4 @@ export class CommonLogger extends Logger {
 		super.log(message, context);
 	}
 }
+

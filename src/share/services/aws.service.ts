@@ -4,6 +4,8 @@ import uuid from 'uuid';
 import { awsS3 } from '../../config/constant.config';
 import { CommonLogger } from '../common/logger/common.logger';
 
+
+
 @Injectable()
 export class AwsService {
 	constructor() {
@@ -26,7 +28,7 @@ export class AwsService {
 			const bucket = awsS3.S3_BUCKET;
 			const fileType = file_type;
 			const extension = file_name && file_name.split('.').pop();
-			const name = (file_name && file_name.trim().split('.').shift().replace(/\s+/g, '_')) || uuid();
+			const name = (file_name && file_name.trim().split('.').shift().replace(/\s+/g, '_')) || uuid.v4();
 			const fileName = `${name}--${new Date().getTime()}.${extension}`;
 
 			const s3Params = {

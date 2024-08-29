@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
-import { authConstant } from '../auth.constant';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class LogInDto {
 	@ApiProperty()
@@ -10,6 +9,6 @@ export class LogInDto {
 
 	@ApiProperty()
 	@IsNotEmpty()
-	@MinLength(8, { message: authConstant.PASSWORD_NOT_MATCH_REQUIREMENT })
+	@IsString()
 	password: string;
 }

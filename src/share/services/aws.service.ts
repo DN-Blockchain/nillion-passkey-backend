@@ -4,8 +4,6 @@ import uuid from 'uuid';
 import { awsS3 } from '../../config/constant.config';
 import { CommonLogger } from '../common/logger/common.logger';
 
-
-
 @Injectable()
 export class AwsService {
 	constructor() {

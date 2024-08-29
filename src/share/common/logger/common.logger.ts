@@ -30,4 +30,3 @@ export class CommonLogger extends Logger {
 		super.log(message, context);
 	}
 }
-

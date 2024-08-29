@@ -35,6 +35,9 @@ $ npm install
 ## Running the app
 
 ```bash
+# run Postgres DBdocker
+$ docker run --name postgres_sql -e POSTGRES_USER=root -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:latest
+
 # development
 $ npm run start
 

@@ -23,7 +23,7 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule, { cors: false });
 
 	app.enableCors({
-		origin: [`${configService.get<number>('ORIGIN_URL')}`, `${configService.get<number>('ORIGIN_URL_LOCAL')}`],
+		origin: [`${configService.get<number>('ORIGIN_URL')}`],
 		credentials: true,
 	});
 

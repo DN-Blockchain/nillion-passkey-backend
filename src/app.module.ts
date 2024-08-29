@@ -1,16 +1,22 @@
 import { Module } from '@nestjs/common';
+import { CacheModule } from '@nestjs/cache-manager';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { typeOrmAsyncConfigPostgres } from './config/typeorm.config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { CrawlDataModule } from './module/crawl-data/crawl-data.module';
+import { PasskeyModule } from './module/passkey/passkey.module';
 
 @Module({
 	imports: [
+
 		ConfigModule.forRoot({ isGlobal: true }),
 		TypeOrmModule.forRootAsync(typeOrmAsyncConfigPostgres),
 		EventEmitterModule.forRoot(),
-		CrawlDataModule,
+		CacheModule.register({
+            isGlobal: true,
+            ttl: 1000 * 60 * 5, // 5 minutes
+        }),
+		PasskeyModule
 	],
 })
 export class AppModule {}

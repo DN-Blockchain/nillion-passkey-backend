@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { Passkey } from 'src/module/crawl-data/entities/crawl-data.entity';
 import { PasskeyService } from './passkey.service';
 import { PasskeyController } from './passkey.controller';
+import { User } from '../user/entities/user.entity';
+import { Passkey } from './entities/passkey.entity';
 
 @Module({
-	// imports: [TypeOrmModule.forFeature([Passkey])],
-	imports: [],
+	imports: [TypeOrmModule.forFeature([Passkey, User])],
 	controllers: [PasskeyController],
 	providers: [PasskeyService],
 	exports: [PasskeyService],

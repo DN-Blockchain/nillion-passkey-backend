@@ -1,15 +1,18 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity({ name: 'passkeys' })
-export class User {
+export class Passkey {
 	@PrimaryGeneratedColumn()
 	id: number;
 
+	@Column({ type: 'varchar' })
+	cred_id: string;
+
 	@Column({ type: 'bytea' })
-	cred_public_key?: Uint8Array;
+	cred_public_key: Uint8Array;
 
 	@Column({ type: 'bigint' })
-	user_id?: number;
+	internal_user_id?: number;
 
 	@Column({ type: 'varchar' })
 	webauthn_user_id?: string;

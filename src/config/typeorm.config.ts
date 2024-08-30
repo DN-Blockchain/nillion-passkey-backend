@@ -1,6 +1,7 @@
 import { TypeOrmModuleAsyncOptions, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { databasePostgres } from './constant.config';
+import { DataSource } from 'typeorm';
 
 const configPostgres: any = {
 	type: databasePostgres.TYPE,
@@ -25,4 +26,4 @@ export const typeOrmAsyncConfigPostgres: TypeOrmModuleAsyncOptions = {
 	useFactory: async (): Promise<TypeOrmModuleOptions> => configPostgres,
 };
 
-export const typeOrmConfig: TypeOrmModuleOptions = configPostgres;
+export const typeOrmConfig = new DataSource(configPostgres);

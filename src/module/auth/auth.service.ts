@@ -24,15 +24,13 @@ export class AuthService {
 			if (isUser) throw new HttpException(userError.EMAIL_IS_EXISTS, HttpStatus.BAD_REQUEST);
 
 			const hashPassword = await bcrypt.hash(signUpDto.password, 12);
-			return await runQuery(async (queryRunner: QueryRunner) => {
-				const user: User = await this.userModel.create({
-					email: signUpDto.email,
-					password: hashPassword,
-				});
-				await queryRunner.manager.save(user);
-
-				return { ...user, password: undefined };
+			const user: User = this.userModel.create({
+				email: signUpDto.email,
+				password: hashPassword,
 			});
+
+			await this.userModel.save(user);
+			return { ...user, password: undefined };
 		} catch (error) {
 			CommonLogger.log(`${new Date().toDateString()}_ERRORS_POST_AUTH_LOGIN_WITH_EMAIL_SERVICE_`, error);
 			throw error;

@@ -9,7 +9,7 @@ export class Passkey {
 	cred_id: string;
 
 	@Column({ type: 'blob' })
-	cred_public_key: Buffer;
+	cred_public_key: Uint8Array;
 
 	@Column({ type: 'bigint' })
 	internal_user_id?: number;

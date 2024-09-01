@@ -14,9 +14,9 @@ export class User {
 	@Column({ type: 'varchar', default: null })
 	current_token?: string;
 
-	@CreateDateColumn({ type: 'timestamp' })
+	@CreateDateColumn({ type: 'datetime' })
 	created_at: Date;
 
-	@UpdateDateColumn({ type: 'timestamp' })
+	@UpdateDateColumn({ type: 'datetime' })
 	updated_at: Date;
 }

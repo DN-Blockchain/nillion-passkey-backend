@@ -3,13 +3,13 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 const configEnv = process.env;
 
-export const databasePostgres = {
-	TYPE: configEnv.DB_TYPE_POSTGRES || 'postgres',
-	HOST: configEnv.DB_HOST_POSTGRES,
-	USERNAME: configEnv.DB_USERNAME_POSTGRES,
-	PASSWORD: configEnv.DB_PASSWORD_POSTGRES,
-	DATABASE: configEnv.DB_NAME_POSTGRES,
-	PORT: +configEnv.DB_PORT_POSTGRES || 5432,
+export const databaseMysql = {
+	TYPE: configEnv.DB_TYPE_MYSQL || 'mysql',
+	HOST: configEnv.DB_HOST_MYSQL,
+	USERNAME: configEnv.DB_USERNAME_MYSQL,
+	PASSWORD: configEnv.DB_PASSWORD_MYSQL,
+	DATABASE: configEnv.DB_NAME_MYSQL,
+	PORT: +configEnv.DB_PORT_MYSQL || 3306,
 	LOGGING: configEnv.DB_LOGGING == 'ENABLED',
 };
 

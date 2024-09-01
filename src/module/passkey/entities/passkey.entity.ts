@@ -8,8 +8,8 @@ export class Passkey {
 	@Column({ type: 'varchar' })
 	cred_id: string;
 
-	@Column({ type: 'bytea' })
-	cred_public_key: Uint8Array;
+	@Column({ type: 'blob' })
+	cred_public_key: Buffer;
 
 	@Column({ type: 'bigint' })
 	internal_user_id?: number;
@@ -29,9 +29,9 @@ export class Passkey {
 	@Column({ type: 'varchar' })
 	transports?: string;
 
-	@CreateDateColumn({ type: 'timestamp' })
+	@CreateDateColumn({ type: 'datetime' })
 	created_at: Date;
 
-	@UpdateDateColumn({ type: 'timestamp' })
+	@UpdateDateColumn({ type: 'datetime' })
 	updated_at: Date;
 }

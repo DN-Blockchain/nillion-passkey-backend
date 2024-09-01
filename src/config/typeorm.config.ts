@@ -1,15 +1,15 @@
 import { TypeOrmModuleAsyncOptions, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { databasePostgres } from './constant.config';
+import { databaseMysql } from './constant.config';
 import { DataSource } from 'typeorm';
 
-const configPostgres: any = {
-	type: databasePostgres.TYPE,
-	host: databasePostgres.HOST,
-	port: databasePostgres.PORT,
-	username: databasePostgres.USERNAME,
-	database: databasePostgres.DATABASE,
-	password: databasePostgres.PASSWORD,
+const configMysql: any = {
+	type: databaseMysql.TYPE,
+	host: databaseMysql.HOST,
+	port: databaseMysql.PORT,
+	username: databaseMysql.USERNAME,
+	database: databaseMysql.DATABASE,
+	password: databaseMysql.PASSWORD,
 	entities: [`${__dirname}/../**/*.entity.{js,ts}`],
 	migrations: [`${__dirname}/../database/migrations/*{.ts,.js}`],
 	cli: {
@@ -17,13 +17,13 @@ const configPostgres: any = {
 	},
 	extra: { charset: 'utf8mb4_unicode_ci' },
 	synchronize: false,
-	logging: databasePostgres.LOGGING,
+	logging: databaseMysql.LOGGING,
 };
 
-export const typeOrmAsyncConfigPostgres: TypeOrmModuleAsyncOptions = {
+export const typeOrmAsyncConfigMysql: TypeOrmModuleAsyncOptions = {
 	imports: [ConfigModule],
 	inject: [ConfigService],
-	useFactory: async (): Promise<TypeOrmModuleOptions> => configPostgres,
+	useFactory: async (): Promise<TypeOrmModuleOptions> => configMysql,
 };
 
-export const typeOrmConfig = new DataSource(configPostgres);
+export const typeOrmConfig = new DataSource(configMysql);

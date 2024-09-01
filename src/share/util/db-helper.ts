@@ -1,4 +1,4 @@
-import { databasePostgres } from 'src/config/constant.config';
+import { databaseMysql } from 'src/config/constant.config';
 import { QueryRunner, TableColumn, TableForeignKey } from 'typeorm';
 
 const buildCreateColumnSql = (column: TableColumn): string => {
@@ -123,7 +123,7 @@ export const executeNoForeignKeyCheck = async (task: () => Promise<any>, queryRu
 };
 
 export const dropForeignKeys = async (tableName: string, foreignKeys: TableForeignKey[], queryRunner: QueryRunner) => {
-	const table = await queryRunner.getTable(`${databasePostgres.DATABASE}.${tableName}`);
+	const table = await queryRunner.getTable(`${databaseMysql.DATABASE}.${tableName}`);
 
 	const columnNames = foreignKeys.reduce((result, foreignKey) => {
 		result.push(...foreignKey.columnNames);

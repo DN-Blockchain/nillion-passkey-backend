@@ -4,13 +4,14 @@ import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common';
 import { VerifyRegistrationDto } from './dto/verify-registration.dto';
 import { GetUser } from 'src/share/decorator';
 import { JwtAuthGuard } from 'src/share/guard/jwt.guard';
+import { VerifyAuthenticationDto } from './dto/verify-authentication.dto';
 
 @ApiTags('passkey')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('/')
 export class PasskeyController {
-	constructor(private passkeyService: PasskeyService) { }
+	constructor(private passkeyService: PasskeyService) {}
 
 	@Post('/generate-registration-options')
 	async generateRegistrationOptions(@GetUser() user): Promise<any> {
@@ -31,8 +32,8 @@ export class PasskeyController {
 	}
 
 	@Post('/verify-authentication')
-	async verifyAuthentication(@GetUser() user, @Body() { credential }: VerifyRegistrationDto): Promise<any> {
-		const verified = await this.passkeyService.verifyRegistration(user, credential);
+	async verifyAuthentication(@GetUser() user, @Body() { credential }: VerifyAuthenticationDto): Promise<any> {
+		const verified = await this.passkeyService.verifyAuthentication(user, credential);
 		return { verified };
 	}
 }

@@ -29,7 +29,7 @@ import { QueryRunner, Repository } from 'typeorm';
 import { Passkey } from './entities/passkey.entity';
 import { runQuery } from 'src/share/util/helper.util';
 
-const rpID = 'localhost';
+const rpID = process.env.RPID;
 
 @Injectable()
 export class PasskeyService {
@@ -146,7 +146,7 @@ export class PasskeyService {
 			const opts: VerifyAuthenticationResponseOpts = {
 				response: credential,
 				expectedChallenge,
-				expectedOrigin: '',
+				expectedOrigin: process.env.ORIGIN_URL,
 				expectedRPID: rpID,
 				authenticator: dbAuthenticator,
 				requireUserVerification: false,

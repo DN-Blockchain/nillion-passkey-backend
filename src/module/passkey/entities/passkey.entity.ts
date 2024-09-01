@@ -14,7 +14,7 @@ export class Passkey {
 	@Column({ type: 'bigint' })
 	internal_user_id?: number;
 
-	@Column({ type: 'varchar' })
+	@Column({ type: 'varchar', default: '' })
 	webauthn_user_id?: string;
 
 	@Column({ type: 'int' })

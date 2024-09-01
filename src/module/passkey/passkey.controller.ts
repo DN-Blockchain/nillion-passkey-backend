@@ -26,7 +26,7 @@ export class PasskeyController {
 
 	@Post('/generate-authentication-options')
 	async generateAuthenticationOptions(@GetUser() user): Promise<any> {
-		const options = await this.passkeyService.generateRegistrationOption(user);
+		const options = await this.passkeyService.generateAuthenticationOption(user);
 		return { createOptions: { publicKey: options } };
 	}
 

@@ -66,14 +66,14 @@ export class PasskeyService {
 			const opts: VerifyRegistrationResponseOpts = {
 				response: credential,
 				expectedChallenge: `${expectedChallenge}`,
-				expectedOrigin: '',
+				expectedOrigin: process.env.ORIGIN_URL,
 				expectedRPID: rpID,
 				requireUserVerification: false,
 			};
 			verification = await verifyRegistrationResponse(opts);
 		} catch (error) {
 			const _error = error as Error;
-			console.error(_error);
+			console.error('_error', _error);
 			return false;
 		}
 
@@ -85,17 +85,18 @@ export class PasskeyService {
 				where: { internal_user_id: user.id, cred_id: credentialID },
 			});
 			if (!existingDevice) {
-				await runQuery(async (queryRunner: QueryRunner) => {
-					const newDevice: Passkey = this.passkeyModel.create({
-						cred_id: credentialID,
-						cred_public_key: credentialPublicKey,
-						internal_user_id: user.id,
-						counter: counter,
-						transports: credential.response.transports.join('|'),
-					});
-
-					await queryRunner.manager.save(newDevice);
+				const newDevice: Passkey = this.passkeyModel.create({
+					cred_id: credentialID,
+					cred_public_key: credentialPublicKey,
+					internal_user_id: user.id,
+					counter: counter,
+					transports: credential.response.transports.join('|'),
+					webauthn_user_id: '',
+					backup_eligible: false,
+					backup_status: false,
 				});
+
+				await this.passkeyModel.save(newDevice);
 			}
 		}
 

@@ -45,6 +45,6 @@ export class Passkey {
 	updated_at: Date;
 
 	@ManyToOne(() => User, (user) => user.passkeys)
-	@JoinColumn({ name: 'user_id' })
+	@JoinColumn({ name: 'internal_user_id' })
 	user?: User;
 }

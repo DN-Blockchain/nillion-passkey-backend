@@ -1,4 +1,13 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { User } from 'src/module/user/entities/user.entity';
+import {
+	Column,
+	CreateDateColumn,
+	Entity,
+	JoinColumn,
+	ManyToOne,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'passkeys' })
 export class Passkey {
@@ -34,4 +43,8 @@ export class Passkey {
 
 	@UpdateDateColumn({ type: 'datetime' })
 	updated_at: Date;
+
+	@ManyToOne(() => User, (user) => user.passkeys)
+	@JoinColumn({ name: 'user_id' })
+	user?: User;
 }

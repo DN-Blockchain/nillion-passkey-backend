@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Passkey } from 'src/module/passkey/entities/passkey.entity';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity({ name: 'users' })
 export class User {
@@ -19,4 +20,7 @@ export class User {
 
 	@UpdateDateColumn({ type: 'datetime' })
 	updated_at: Date;
+
+	@OneToMany(() => Passkey, (passkey) => passkey.user)
+	passkeys?: Passkey[];
 }
